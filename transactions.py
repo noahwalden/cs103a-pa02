@@ -1,6 +1,6 @@
 import sqlite3
 
-class Transactions():
+class Transaction():
 
     def __init__(self, db_filename):
         self.c = db_filename

@@ -31,11 +31,11 @@ could be replaced with PostgreSQL or Pandas or straight python lists
 
 '''
 
-#from transactions import Transaction
+from transactions import Transaction
 from category import Category
 import sys
 
-#transactions = Transaction('tracker.db')
+transactions = Transaction('tracker.db')
 category = Category('tracker.db')
 
 
@@ -125,4 +125,3 @@ def print_categories(cats):
 # here is the main call!
 
 toplevel()
-
