@@ -1,4 +1,5 @@
 .DS_Store
 *.db
+.ipynb*
 __pycache__
 .pytest_cache
