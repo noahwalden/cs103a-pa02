@@ -78,6 +78,13 @@ def process_choice(choice):
         desc = input("new category description: ")
         cat = {'name':name, 'desc':desc}
         category.update(rowid,cat)
+    elif choice=='5':
+        amount = input("transaction amount: ")
+        category = input("transaction category: ")
+        date = input("transaction date: ")
+        description = input("transaction description: ")
+        transaction = {'amount': amount, 'category': category, 'date': date, 'description': description}
+        transactions.add(transaction)
     else:
         print("choice",choice,"not yet implemented")
 
