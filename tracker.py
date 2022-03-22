@@ -79,7 +79,6 @@ def process_choice(choice):
         cat = {'name':name, 'desc':desc}
         category.update(rowid,cat)
     elif choice == '4':
-        
         print_transactions(transactions.select_all())
     elif choice=='5':
         item_number = input("transaction number: ")
