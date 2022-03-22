@@ -78,13 +78,19 @@ def process_choice(choice):
         desc = input("new category description: ")
         cat = {'name':name, 'desc':desc}
         category.update(rowid,cat)
+    elif choice == '4':
+        
+        print_transactions(transactions.select_all())
     elif choice=='5':
+        item_number = input("transaction number: ")
         amount = input("transaction amount: ")
-        category = input("transaction category: ")
+        cat = input("transaction category: ")
         date = input("transaction date: ")
         description = input("transaction description: ")
-        transaction = {'amount': amount, 'category': category, 'date': date, 'description': description}
+        transaction = {'item_number': item_number ,'amount': amount, 'category': cat, 'date': date, 'description': description}
         transactions.add(transaction)
+    elif choice =='11':
+        toplevel()
     else:
         print("choice",choice,"not yet implemented")
 
@@ -112,12 +118,12 @@ def print_transactions(items):
         print('no items to print')
         return
     print('\n')
-    print("%-10s %-10d %-10s %-10d %-30s"%(
+    print("%-10s %-10s %-10s %-10s %-30s"%(
         'item #','amount','category','date','description'))
     print('-'*40)
     for item in items:
         values = tuple(item.values()) 
-        print("%-10s %-10d %-10s %-10d %-30s"%values)
+        print("%-10d %-10d %-10s %-10s %-30s"%values)
 
 def print_category(cat):
     print("%-3d %-10s %-30s"%(cat['rowid'],cat['name'],cat['desc']))
