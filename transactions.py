@@ -102,3 +102,25 @@ class Transaction:
             else: 
                 transactions_by_month[month] = [t[1], {t[2]}]
         return [{"month": k, "total_amount": transactions_by_month[k][0], "total_categories": transactions_by_month[k][1]} for k in transactions_by_month]
+
+
+    def summarize_by_year(self): #Operates assuming the date input format is done by Month/Day/Year For Example 12/25/2012
+        """Implemented by Steven Rud"""
+        con= sqlite3.connect(self.database_file) #Shows how much was spent in each year regardless of on what it is was spent
+        cur = con.cursor()
+        cur.execute("select date, sum(amount) from transactions group by date")
+        date = cur.fetchall()
+        year = []
+        years = [x[0] for x in date]
+        cash = [c[1] for c in date]
+        list_years = list(years)
+        for i in list_years:
+            i=str(i)
+            i=i[-4:]
+            i = int(i)
+            year.append(i)
+        dict_years={}
+        for key, val in zip(year,cash): 
+            dict_years[key] = dict_years.get(key, 0) + val
+        tuple_years = tuple(dict_years.items())
+        return [{"Years": t[0], "Total Spent":t[1]} for t in tuple_years]

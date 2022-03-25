@@ -97,6 +97,8 @@ def process_choice(choice):
     elif choice == '8':
         # Leora Baumgarten
         print_month_summary(transactions.summarize_by_month())
+    elif choice == '9': #Steven Rud
+        print_year_summary(transactions.summarize_by_year())
     elif choice =='11':
         toplevel()
     else:
@@ -157,6 +159,13 @@ def print_month_summary(months):
         print("Month:", month["month"])
         print("Total amount spent:", month["total_amount"])
         print("Categories of spending:", month["total_categories"])
+        print()
+
+def print_year_summary(year_dicts):
+    """Code by Steven Rud, printing the summary by years"""
+    for y in year_dicts:
+        print("Year: ",y["Years"])
+        print("Total Spent in the Year: ",y["Total Spent"])
         print()
 
 # here is the main call!
