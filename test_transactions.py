@@ -61,10 +61,25 @@ def test_date_summary(small_transaction):
 @pytest.mark.add
 def test_add(transaction):
     """Implemented by Noah"""
-    transaction.add({'item_number':1,'amount':25,'category':'food','date':'2021-05-18','description':'steak dinner'})
-    transaction.add({'item_number':2,'amount':40,'category':'school','date':'2021-05-18','description':'notebooks and pens'})
-    transaction.add({'item_number':3,'amount':30,'category':'gas','date':'2022-04-12','description':'diesel'})
-    transaction.add({'item_number':4,'amount':62,'category':'gas','date':'2019-02-05','description':'regular'})
-    transaction.add({'item_number':5,'amount':89,'category':'gift','date':'2019-02-05','description':'birthday present'})
-    transaction.add({'item_number':6,'amount':45,'category':'school','date':'2022-04-12','description':'textbooks'})
+    transaction.add({'item_number':1,'amount':25,'category':'food','date':'May 18 2021','description':'steak dinner'})
+    transaction.add({'item_number':2,'amount':40,'category':'school','date':'May 18 2021','description':'notebooks and pens'})
+    transaction.add({'item_number':3,'amount':30,'category':'gas','date':'April 12 2022','description':'diesel'})
+    transaction.add({'item_number':4,'amount':62,'category':'gas','date':'February 5 2019','description':'regular'})
+    transaction.add({'item_number':5,'amount':89,'category':'gift','date':'February 5 2019','description':'birthday present'})
+    transaction.add({'item_number':6,'amount':45,'category':'school','date':'April 12 2022','description':'textbooks'})
     assert len(transaction.select_all()) == 6
+
+# Leora Baumgarten:
+@pytest.mark.delete
+def test_delete(small_transaction):
+    small_transaction.delete(2)
+    assert len(small_transaction.select_all()) == 5
+
+# Leora Baumgarten:
+@pytest.mark.month_summary
+def test_month_summary(small_transaction):
+    items = small_transaction.summarize_by_month()
+    assert len(items) == 3
+    assert "month" in items[0]
+    assert "total_amount" in items[0]
+    assert "total_categories" in items[0]

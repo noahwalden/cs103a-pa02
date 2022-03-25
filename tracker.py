@@ -88,8 +88,15 @@ def process_choice(choice):
         description = input("transaction description: ")
         transaction = {'item_number': item_number ,'amount': amount, 'category': cat, 'date': date, 'description': description}
         transactions.add(transaction)
+    elif choice=='6':
+        # Leora Baumgarten
+        item_number = int(input("item number of transaction to be deleted: "))
+        transactions.delete(item_number)
     elif choice=='7':
         print_date_summary(transactions.summarize_by_date())
+    elif choice == '8':
+        # Leora Baumgarten
+        print_month_summary(transactions.summarize_by_month())
     elif choice =='11':
         toplevel()
     else:
@@ -141,6 +148,15 @@ def print_date_summary(date_dicts):
         print("Date:", date["date"])
         print("Total amount spent:", date["total_amount"])
         print("Categories of spending:", date["categories"])
+        print()
+
+# Leora Baumgarten: 
+def print_month_summary(months):
+    """summarize transactions by month"""
+    for month in months:
+        print("Month:", month["month"])
+        print("Total amount spent:", month["total_amount"])
+        print("Categories of spending:", month["total_categories"])
         print()
 
 # here is the main call!

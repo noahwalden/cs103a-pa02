@@ -74,3 +74,31 @@ class Transaction:
         con.close()
 
         return [{"date": t[0], "total_amount": t[1], "categories": t[2]} for t in tuples]
+
+    # Leora Baumgarten
+    # delete according to transaction number
+    def delete(self, item_number):
+        con = sqlite3.connect(self.database_file)
+        cur = con.cursor()
+        cur.execute('''DELETE FROM transactions WHERE item_number=(?);''',(item_number,))
+        con.commit()
+        con.close()
+
+    # Leora Baumgarten
+    def summarize_by_month(self):
+        con = sqlite3.connect(self.database_file)
+        cur = con.cursor()
+        cur.execute('''SELECT date, sum(amount), group_concat(distinct category) FROM transactions GROUP BY date''')
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        transactions_by_month = {}
+        for t in tuples:
+            date = t[0].split()
+            month = (date[0], date[-1])
+            if month in transactions_by_month:
+                transactions_by_month[month][0] += t[1]
+                transactions_by_month[month][1].add(t[2])
+            else: 
+                transactions_by_month[month] = [t[1], {t[2]}]
+        return [{"month": k, "total_amount": transactions_by_month[k][0], "total_categories": transactions_by_month[k][1]} for k in transactions_by_month]
