@@ -124,3 +124,22 @@ class Transaction:
             dict_years[key] = dict_years.get(key, 0) + val
         tuple_years = tuple(dict_years.items())
         return [{"Years": t[0], "Total Spent":t[1]} for t in tuple_years]
+
+    def summarize_by_category(self): #Summarizes how much was spent in each category
+        """Implemented by Steven Rud"""
+        con= sqlite3.connect(self.database_file) #Shows how much was spent in each category regardless of on when it was spent
+        cur = con.cursor()
+        cur.execute("select group_concat(distinct category), sum(amount) from transactions group by amount")
+        cat = cur.fetchall()
+        cats = [c[0] for c in cat]
+        money = [m[1] for m in cat]
+        list_cats= []
+        for i in cats:
+            i = i.split(',')
+            list_cats.extend(i)
+        dict_cats={}
+        for key, val in zip(list_cats,money): 
+            dict_cats[key] = dict_cats.get(key,0) + val
+        tuple_years = tuple(dict_cats.items())
+        return [{"Category": t[0], "Total Spent":t[1]} for t in tuple_years]
+
