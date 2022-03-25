@@ -45,7 +45,7 @@ def test_select_all():
     transaction = Transaction('tracker.db')
     items = transaction.select_all()
     assert items[0]['item_number'] == 1
-    assert items[0]['amount'] == 1
+    assert items[1]['item_number'] == 2
 
 # test the first data in the tracker db
 @pytest.mark.date_summary
