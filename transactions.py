@@ -1,9 +1,7 @@
 import sqlite3
 
-from category import to_cat_dict
-
-
 def to_transaction_dict(transaction_tuple):
+    """Converts row in SQLite to a dict"""
     transaction = {
         "item_number": transaction_tuple[0],
         "amount": transaction_tuple[1],
@@ -14,11 +12,13 @@ def to_transaction_dict(transaction_tuple):
     return transaction
 
 
-def to_transaction_dict_list(transaction_tuple):
-    return [to_transaction_dict(transaction) for transaction in transaction_tuple]
+def to_transaction_dict_list(transaction_tuple_list):
+    """Converts a list of SQLite row tuples to a list of dicts"""
+    return [to_transaction_dict(transaction) for transaction in transaction_tuple_list]
 
 
 class Transaction:
+    """Represents a collection of transactions"""
     def __init__(self, db_filename):
         self.database_file = db_filename
         con = sqlite3.connect(db_filename)
@@ -28,7 +28,7 @@ class Transaction:
                     (
                     item_number int,
                     amount int,
-                     category text,
+                    category text,
                     date text,
                     description text)"""
         )
@@ -36,6 +36,7 @@ class Transaction:
         con.close()
 
     def add(self, item):
+        """Implemented by Noah"""
         con = sqlite3.connect(self.database_file)
         cur = con.cursor()
         cur.execute(
@@ -56,11 +57,20 @@ class Transaction:
         ''' return all of the transactions as a list of dicts.'''
         con= sqlite3.connect(self.database_file)
         cur = con.cursor()
-        cur.execute("SELECT item_number,* from transactions")
+        cur.execute("SELECT * from transactions")
         tuples = cur.fetchall()
         con.commit()
         con.close()
         return to_transaction_dict_list(tuples)
 
     def summarize_by_date(self):
-        pass
+        """Implemented by Noah"""
+        con = sqlite3.connect(self.database_file)
+        cur = con.cursor()
+        cur.execute("select date, sum(amount), group_concat(distinct category) from transactions group by date")
+
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+
+        return [{"date": t[0], "total_amount": t[1], "categories": t[2]} for t in tuples]

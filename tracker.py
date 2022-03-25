@@ -26,14 +26,13 @@ In place of SQL queries, we will have method calls.
 
 This app will store the data in a SQLite database ~/tracker.db
 
-Note the actual implementation of the ORM is hidden and so it 
+Note the actual implementation of the ORM is hidden and so it
 could be replaced with PostgreSQL or Pandas or straight python lists
 
 '''
 
 from transactions import Transaction
 from category import Category
-import sys
 
 transactions = Transaction('tracker.db')
 category = Category('tracker.db')
@@ -41,7 +40,7 @@ category = Category('tracker.db')
 
 # here is the menu for the tracker app
 
-menu = '''
+MENU = '''
 0. quit
 1. show categories
 2. add category
@@ -60,6 +59,7 @@ menu = '''
 
 
 def process_choice(choice):
+    """Process the choice associated with the provided number"""
 
     if choice=='0':
         return
@@ -88,6 +88,8 @@ def process_choice(choice):
         description = input("transaction description: ")
         transaction = {'item_number': item_number ,'amount': amount, 'category': cat, 'date': date, 'description': description}
         transactions.add(transaction)
+    elif choice=='7':
+        print_date_summary(transactions.summarize_by_date())
     elif choice =='11':
         toplevel()
     else:
@@ -98,10 +100,8 @@ def process_choice(choice):
 
 
 def toplevel():
-    ''' handle the user's choice '''
-
     ''' read the command args and process them'''
-    print(menu)
+    print(MENU)
     choice = input("> ")
     while choice !='0' :
         choice = process_choice(choice)
@@ -125,14 +125,23 @@ def print_transactions(items):
         print("%-10d %-10d %-10s %-10s %-30s"%values)
 
 def print_category(cat):
+    """print a category"""
     print("%-3d %-10s %-30s"%(cat['rowid'],cat['name'],cat['desc']))
 
 def print_categories(cats):
+    """print multiple categories"""
     print("%-3s %-10s %-30s"%("id","name","description"))
     print('-'*45)
     for cat in cats:
         print_category(cat)
 
+def print_date_summary(date_dicts):
+    """summarize transactions by date"""
+    for date in date_dicts:
+        print("Date:", date["date"])
+        print("Total amount spent:", date["total_amount"])
+        print("Categories of spending:", date["categories"])
+        print()
 
 # here is the main call!
 
