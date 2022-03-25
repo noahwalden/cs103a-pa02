@@ -1,5 +1,5 @@
 Financial transaction tracker program for CS103A PA02
-
+```
 Script started on Fri Mar 25 04:16:58 2022
 
 (base) PS C:\Users\Steven\Desktop\PA02\cs103a-pa02> python tracker.py
@@ -342,3 +342,4 @@ test_transactions.py::test_month_summary PASSED                                 
 ================================================== 9 passed in 0.48s ==================================================
 
 Script done on Fri Mar 25 04:49:13 2022
+```
