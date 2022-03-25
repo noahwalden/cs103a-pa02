@@ -1,0 +1,68 @@
+Script started on Thu Mar 24 21:45:16 2022
+[?1034h(cs103a) [38;5;7mnoahwalden(B[m@noahs-mbp-6:(B[m[38;5;6m[~/Desktop/cs103a-pa02](B[m: (B[mpython 
+.git/                 category.py           tracker.py
+.gitignore            pytest.ini            transactions.py
+.pytest_cache/        test_category.py      typescript
+README.md             test_transactions.py  
+__pycache__/          tracker.db            
+(cs103a) [38;5;7mnoahwalden(B[m@noahs-mbp-6:(B[m[38;5;6m[~/Desktop/cs103a-pa02](B[m: (B[mpython trans[K[Kcker.py 
+
+0. quit
+1. show categories
+2. add category
+3. modify category
+4. show transactions
+5. add transaction
+6. delete transaction
+7. summarize transactions by date
+8. summarize transactions by month
+9. summarize transactions by year
+10. summarize transactions by category
+11. print this menu
+
+> 5
+transaction number: 23
+transaction amount: 567
+transaction category: food
+transaction date: 2021  12-06-29
+transaction description: mac and cheese
+> 4
+
+
+item #     amount     category   date       description                   
+----------------------------------------
+3          45         food       2021-05-18 hamburger                     
+4          32         school     2021-05-18 notebooks and paper           
+7          72         car        1902-04-11 gas                           
+10         72         car        1902-04-11 oil                           
+19         629        furniture  1958-04-11 couch and chairs              
+23         567        food       2012-06-29 mac and cheese                
+> 7
+Date: 1902-04-11
+Total amount spent: 144
+Categories of spending: car
+
+Date: 1958-04-11
+Total amount spent: 629
+Categories of spending: furniture
+
+Date: 2012-06-29
+Total amount spent: 567
+Categories of spending: food
+
+Date: 2021-05-18
+Total amount spent: 77
+Categories of spending: food,school
+
+> ^CTraceback (most recent call last):
+  File "/Users/noahwalden/Desktop/cs103a-pa02/tracker.py", line 148, in <module>
+    toplevel()
+  File "/Users/noahwalden/Desktop/cs103a-pa02/tracker.py", line 107, in toplevel
+    choice = process_choice(choice)
+  File "/Users/noahwalden/Desktop/cs103a-pa02/tracker.py", line 98, in process_choice
+    choice = input("> ")
+KeyboardInterrupt
+
+(cs103a) [38;5;7mnoahwalden(B[m@noahs-mbp-6:(B[m[38;5;6m[~/Desktop/cs103a-pa02](B[m: (B[mexit
+
+Script done on Thu Mar 24 21:47:03 2022
