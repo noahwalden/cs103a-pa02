@@ -1,0 +1,54 @@
+Script started on 2022-03-25 02:04:09-04:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="120" LINES="43"]
+]0;lbaumgarten@LAPTOP-5Q9J7E7H: /mnt/c/Users/baumg/Brandeis/Spring 2022/Software Engineering/cs103a-pa02 [01;32mlbaumgarten@LAPTOP-5Q9J7E7H[00m:[01;34m/mnt/c/Users/baumg/Brandeis/Spring 2022/Software Engineering/cs103a-pa02[00m$ python3 tracker.py 
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ky
+
+0. quit
+1. show categories
+2. add category
+3. modify category
+4. show transactions
+5. add transaction
+6. delete transaction
+7. summarize transactions by date
+8. summarize transactions by month
+9. summarize transactions by year
+10. summarize transactions by category
+11. print this menu
+
+> 4
+
+
+item #     amount     category   date       description                   
+----------------------------------------
+1          1          construction February 8 2021 supplies                      
+2          4          dinner     March 2 2022 napkins                       
+3          2          dinner     February 3 2021 invitations                   
+4          1000       school     March 17 2021 meal plan                     
+> 8
+Month: ('February', '2021')
+Total amount spent: 3
+Categories of spending: {'dinner', 'construction'}
+
+Month: ('March', '2021')
+Total amount spent: 1000
+Categories of spending: {'school'}
+
+Month: ('March', '2022')
+Total amount spent: 4
+Categories of spending: {'dinner'}
+
+> 6
+item number of transaction to be deleted: 2
+> 4
+
+
+item #     amount     category   date       description                   
+----------------------------------------
+1          1          construction February 8 2021 supplies                      
+3          2          dinner     February 3 2021 invitations                   
+4          1000       school     March 17 2021 meal plan                     
+> 0
+bye
+]0;lbaumgarten@LAPTOP-5Q9J7E7H: /mnt/c/Users/baumg/Brandeis/Spring 2022/Software Engineering/cs103a-pa02 [01;32mlbaumgarten@LAPTOP-5Q9J7E7H[00m:[01;34m/mnt/c/Users/baumg/Brandeis/Spring 2022/Software Engineering/cs103a-pa02[00m$ exit
+
+Script done on 2022-03-25 02:05:01-04:00 [COMMAND_EXIT_CODE="0"]
